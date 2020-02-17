@@ -9,16 +9,21 @@ busImg.addEventListener("mouseleave", () => {
     busImg.style.transform = "scale(1)";
 })
 
-const navAnchors = document.querySelectorAll(".nav-link");
-navAnchors.forEach( links => {
-    links.addEventListener("click", () => {
-        links.style.color = "blue";
-    })
-})
+
 
 const nav = document.querySelector(`.main-navigation`);
-window.addEventListener("resize", () => {
+
+window.addEventListener("resize", (event) => {
     nav.style.backgroundColor = "lightcyan";
+})
+
+document.querySelectorAll(".nav-link").forEach(links => {
+    
+    links.addEventListener("click", (event) => {
+        links.style.color = "blue";
+        event.preventDefault();
+    })
+    
 })
 
 const images = document.querySelectorAll(`.img-content`);
@@ -26,6 +31,7 @@ images.forEach( img => {
     img.addEventListener("mouseover", () => {
     img.style.transform = "rotate(360deg)";
     img.style.transition = "all 2.0s";
+  
     })
 })
 
@@ -40,11 +46,24 @@ destinationImage.addEventListener("mouseleave", () => {
 })
 
 destinations = document.querySelectorAll(".destination");
-destinations.forEach( dest => {
-    dest.addEventListener("copy", () => {
-        dest.style.color = "blue";
+contentPick = document.querySelector(".content-pick");
+firstDestination = document.querySelector(".destination");
+
+contentPick.addEventListener("click", (event) => {
+    event.target.style.backgroundColor= "red";
+    event.stopPropagation()
+})
+
+destinations.forEach(event => {
+    event.addEventListener("copy", (event) => {
+        event.target.style.color = "blue";
+    })
+    firstDestination.addEventListener("click", (event) => {
+        firstDestination.style.backgroundColor = "green";
+        
     })
 })
+
 window.addEventListener("keyup", () => {
     alert("OoF!");
 })
